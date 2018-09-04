@@ -69,7 +69,7 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 COOKIES_ENABLED = False  # 禁用cookie
 ITEM_PIPELINES = {
-   'jobbole_article_spider.pipelines.jobbole_article_spider_pipeline': 1,
+   'jobbole_article_spider.pipelines.jsonwithencodingpipeline': 1,
    'scrapy.pipelines.images.ImagesPipeline': 300
 }
 

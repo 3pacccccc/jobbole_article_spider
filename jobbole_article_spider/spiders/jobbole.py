@@ -22,8 +22,8 @@ class JobboleSpider(scrapy.Spider):
             yield Request(url=parse.urljoin(response.url, post_url),  callback=self.parse_detail)       #进入文章的url并调用parse——detail函数进行解析
 
 
-        # next_page_url = response.css('.next.page-numbers::attr(href)').extract()[0]        #获取下一页的url
-        # yield Request(url=parse.urljoin(response.url, next_page_url), callback=self.parse)     #进入下一页并调用parse进行解析从而获取到所有文章的url
+        next_page_url = response.css('.next.page-numbers::attr(href)').extract()[0]        #获取下一页的url
+        yield Request(url=parse.urljoin(response.url, next_page_url), callback=self.parse)     #进入下一页并调用parse进行解析从而获取到所有文章的url
 
 
 
@@ -35,7 +35,6 @@ class JobboleSpider(scrapy.Spider):
         tag_list = response.css('.entry-meta-hide-on-mobile a::text').extract()
         tag = [element for element in tag_list if not element.strip().endswith('评论')]    #提取文章的标签，如果有‘*评论’出现，则删除
         tags = ','.join(tag)
-        content = response.css('.entry').extract()
         praise_nums = int(response.css('.post-adds h10::text').extract()[0])
         collect_nums_str = response.css('.bookmark-btn::text').extract()[0]
         collect_nums_match = re.match('.*?(\d+).*', collect_nums_str)
@@ -60,7 +59,6 @@ class JobboleSpider(scrapy.Spider):
         jobbole_item['title'] = title
         jobbole_item['date'] = date
         jobbole_item['tags'] = tags
-        jobbole_item['content'] = content
         jobbole_item['praise_nums'] = praise_nums
         jobbole_item['collect_nums'] = collect_nums
         jobbole_item['comment_nums'] = comment_nums

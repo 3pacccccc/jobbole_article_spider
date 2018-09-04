@@ -19,7 +19,6 @@ class jobbole_article_spider_item(scrapy.Item):
     tags = scrapy.Field()
     praise_nums = scrapy.Field()
     date = scrapy.Field()
-    content = scrapy.Field()
     comment_nums = scrapy.Field()
     collect_nums = scrapy.Field()
     url_object_id = scrapy.Field()
