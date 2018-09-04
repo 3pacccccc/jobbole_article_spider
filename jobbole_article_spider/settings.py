@@ -69,12 +69,12 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 COOKIES_ENABLED = False  # 禁用cookie
 ITEM_PIPELINES = {
-   'jobbole_article_spider.pipelines.jsonwithencodingpipeline': 1,
+   'jobbole_article_spider.pipelines.mysqltwistedpipeline': 1,
    'scrapy.pipelines.images.ImagesPipeline': 300
 }
 
-project_dir = os.path.abspath(os.path.dirname(__file__))
-IMAGES_STORE = os.path.join(project_dir, 'images')
+# project_dir = os.path.abspath(os.path.dirname(__file__))
+# IMAGES_STORE = os.path.join(project_dir, 'images')
 
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -97,3 +97,10 @@ IMAGES_STORE = os.path.join(project_dir, 'images')
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+#数据库连接有关参数
+MYSQL_HOST = '192.168.118.130'
+MYSQL_DB = 'scrapy_spider'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'root'
